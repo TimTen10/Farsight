@@ -5,7 +5,7 @@
 ## 1. Step:
 
 * Make it work with simple numbers.
-  * How to go about checking neighoring numbers?
+  * How to go about checking neighboring numbers?
 * How far can you see?
   * Where are points that you can't see above?
   * Make sure you can't see around corners.
