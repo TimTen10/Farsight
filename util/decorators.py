@@ -1,4 +1,6 @@
 import functools
+import os
+import sys
 import time
 
 
@@ -26,3 +28,28 @@ def debug(func):
         print(f"{func.__name__!r} called with {signature} returned {value!r}")
         return value
     return wrapper_logging
+
+
+# simple decorator for repeating a function
+def repeat(num_times):
+    def decorator_repeat(func):
+        @functools.wraps(func)
+        def wrapper_repeat(*args, **kwargs):
+            for _ in range(num_times):
+                val = func(*args, **kwargs)
+            return val
+        return wrapper_repeat
+    return decorator_repeat
+
+
+# Simple decorator that mutes writes to stdout (e.g. print-statements)
+def mute(func):
+    @functools.wraps(func)
+    def wrapper_mute(*args, **kwargs):
+        old_stdout = sys.stdout
+        sys.stdout = open(os.devnull, 'w')
+        value = func(*args, **kwargs)
+        sys.stdout = old_stdout
+        return value
+    return wrapper_mute
+
