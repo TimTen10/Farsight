@@ -30,7 +30,9 @@ This project aims to answer that question.
     you might look in. 
   * We need a metric do calculate ***distance*** between two points &#8594; euclidean distance.
   * We need a way to determine ***line of sight***, as in "all points between two given points". 
-    View angle is dependent on this variable as we have one for every direction.
+    View angle is dependent on this variable as we have one view angle for every direction.
+    [Bresenham Algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) should
+    be quite useful to achieve this.
 
   **&#8658;** To check whether you see point b from point a requires:
   * Map of all points, point a, point b, view angle, line of sight, distance
