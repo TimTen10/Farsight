@@ -32,15 +32,24 @@ This project aims to answer that question.
   * We need a way to determine ***line of sight***, as in "all points between two given points". 
     View angle is dependent on this variable as we have one view angle for every direction.
     [Bresenham Algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) should
-    be quite useful to achieve this.
+    be quite useful to achieve this.  
+    &#8594; Calculating a path starting from the view point to every point at the outer edge
+    of the map gives us a path to every point of the whole map.
 
-  **&#8658;** To check whether you see point b from point a requires:
-  * Map of all points, point a, point b, view angle, line of sight, distance
-  * Idea:  
-  Starting from point a, in loops around it, for each point check visibility. 
-  Update the view angle at each point. Further out, visibilty depends on the view angle
-  of the last point in the line of sight. View angle may only ever go up or down in a
-  line of sight but not both! As a result every point needs a way to save its view angle.
+&#8658; To check whether you see point b from point a requires:
+* Map of all points, point a, point b, view angle, line of sight, distance
+* Idea:  
+Starting from point a, in loops around it, for each point check visibility. 
+Update the view angle at each point. Further out, visibilty depends on the view angle
+of the last point in the line of sight. View angle may only ever go up or down in a
+line of sight but not both! As a result every point needs a way to save its view angle.
+Output should be an array of the same size as the input map with 0 or 1 depending on whether
+the point is visible or not.
+* Implementation:
+For every point we only need to save the preceding point in the Bresenham path and check against
+that point whether, with the given distance between points (later on including curvature) and
+given view angle, the point is visible. All in all every single point holds: height, (view) angle,
+preceding point in Bresenham path, visibility, distance to view point (needed?)
 
 ## 2. Step:
 
@@ -48,7 +57,8 @@ Make it realistic. The earth isn't flat. When does it begin to curve?
 
 * The curvature of the earth takes away from the height of distant points.  
   `distance of point x - earth_curvature_factor = new distance of point x`  
-  Curvature factor is dependent on distance between points.
+  Curvature factor is dependent on distance between points. See [here](https://earthcurvature.com/)
+  for additional information.
 * Human height provides and additional ~1.8 meter.
 
 ## 3. Step:
