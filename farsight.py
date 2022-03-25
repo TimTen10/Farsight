@@ -4,8 +4,8 @@ from geomap import GeoMap
 
 
 def main(shape, distance):
-    g_m = GeoMap(shape, distance)
-    return g_m.height_map
+    gm = GeoMap(shape, distance)
+    return gm.height_map
 
 
 def visualize(height_map):

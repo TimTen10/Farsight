@@ -38,7 +38,7 @@ This project aims to answer that question.
   Starting from point a, in loops around it, for each point check visibility. 
   Update the view angle at each point. Further out, visibilty depends on the view angle
   of the last point in the line of sight. View angle may only ever go up or down in a
-  line of sight but not both!
+  line of sight but not both! As a result every point needs a way to save its view angle.
 
 ## 2. Step:
 
