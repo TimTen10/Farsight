@@ -23,11 +23,10 @@ This project aims to answer that question.
   Which points are still visible? Depends on every single point between "a" and "b".
   E.g. high mountains far in the back are still visible over a 20-meter hill, while
   a valley behind said hill is not visible anymore. This leads to the following idea(s):
-  * A point "a" needs a ***visibility height*** in each direction. Points above that height
-    are visible, everything below is not. This visibilty height depends on the closest and
-    highest point "b" and the distance between points on the map. Visibility height is
-    nothing more than a ***view angle***. This view angle is different for every direction 
-    you might look in. 
+  * A point "a" needs a ***view angle*** in each direction. Depending on what that angle currently
+    is, a point b might or might not be visible. View angle depends on current view angle, 
+    the highest obstacle in line of sight, distance between points on the map and distance
+    between a and b.
   * We need a metric do calculate ***distance*** between two points &#8594; euclidean distance.
   * We need a way to determine ***line of sight***, as in "all points between two given points". 
     View angle is dependent on this variable as we have one view angle for every direction.
@@ -41,8 +40,8 @@ This project aims to answer that question.
 * Idea:  
 Starting from point a, in loops around it, for each point check visibility. 
 Update the view angle at each point. Further out, visibilty depends on the view angle
-of the last point in the line of sight. View angle may only ever go up or down in a
-line of sight but not both! As a result every point needs a way to save its view angle.
+of the last point in the line of sight. The view angle can not get smaller!
+As a result every point needs a way to save its view angle.
 Output should be an array of the same size as the input map with 0 or 1 depending on whether
 the point is visible or not.
 * Implementation:
