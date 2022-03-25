@@ -1,18 +1,18 @@
-from decorators import timer
+from decorators import mute, repeat, timer
 
 
 def signum(x):
     return 1 if x > 0 else -1 if x < 0 else 0
 
 
-@timer
 def bresenham(xstart, ystart, xend, yend):
     """
     Bresenham algorithm between points (xstart, ystart) and (xend, yend).
-    :param xstart:
-    :param ystart:
-    :param xend:
-    :param yend:
+
+    :param xstart: x value of the starting point
+    :param ystart: y value of the starting point
+    :param xend: x value of the end point
+    :param yend: y value of the end point
     :return: None
     """
     # Calculate distance in both dimensions
@@ -68,7 +68,9 @@ def main():
     assert signum(123123) == 1
     assert signum(6) == 1
 
-    print(bresenham(0, 0, 7, 8))
+    test_i = bresenham(0, 0, 23, 4)
+    assert test_i == bresenham(0, 0, *test_i[-1])
+    print(bresenham(0, 0, 4, 2))
 
 
 if __name__ == "__main__":
